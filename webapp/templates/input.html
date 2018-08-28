@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TEST REVIEWS</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/input_boxes.css') }}">
+    </head>
+    <body>
+      <div>
+        <h1>Start Exploring ヾ(⌐■_■)ノ♪</h1>
+        <h4>Click an album to find related albums based off of <a href="https://pitchfork.com/" target="_blank">Pitchfork Reviews</a></h4>
+      </div>
+      <div class="flex-container">
+        {% for box in boxes %}
+        <div><button onclick="window.location.href='/phrase?phrase_input={{ box['name'] }}'">{{ box['name'] }}</button></div>
+        {% endfor %}
+      </div>
+    </body>
+</html>

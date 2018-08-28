@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TEST REVIEWS</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    </head>
+    <body>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>sim</th>
+                    <th>reviewid 1</th>
+                    <th>artist name 1</th>
+                    <th>album name 1</th>
+                    <th>url 1</th>
+                    <th>score 1</th>
+                    <th>phrase 1</th>
+                    <th>reviewid 2</th>
+                    <th>artist name 2</th>
+                    <th>album name 2</th>
+                    <th>url 2</th>
+                    <th>score 2</th>
+                    <th>phrase 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in results %}
+                <tr>
+                    <td>{{ r['sim'] }} </td>
+                    <td>{{ r['reviewid1'] }}</td>
+                    <td>{{ r['artist1'] }}</td>
+                    <td>{{ r['album1'] }}</td>
+                    <td><a href="{{ r['url1'] }}">Pitchfork Review</td>
+                    <td>{{ r['score1'] }}</td>
+                    <td>{{ r['phrase1'] }}</td>
+                    <td>{{ r['reviewid2'] }}</td>
+                    <td>{{ r['artist2'] }}</td>
+                    <td>{{ r['album2'] }}</td>
+                    <td><a href="{{ r['url2'] }}">Pitchfork Review</a></td>
+                    <td>{{ r['score2'] }}</td>
+                    <td>{{ r['phrase2'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
+l>

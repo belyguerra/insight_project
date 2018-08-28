@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TucaTunes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/webapp.css') }}">
+    </head>
+    <body>
+      <h4>Click an album cover to find related albums based off of <a href="https://pitchfork.com/" target="_blank">Pitchfork Reviews</a></h4>
+
+        {% if found %}
+          {% for review in reviews %}
+            <div class="flex-container">
+                    <div>
+                      <a href="/review?reviewid={{ review['reviewid'] }}"><img src="{{ review['image'] }}"></a>
+                      <br>
+                      <span>Artist: {{ review['artist'] }}</span>
+                      <br>
+                      <span>Album: {{ review['album'] }}</span>
+                    </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h3 style="color: red;">Sorry, not currently available. Try another below...</h3>
+
+        {% endif %}
+
+        <div>
+          <h1>Keep Exploring ヾ(⌐■_■)ノ♪</h1>
+          <h4>Click an album cover to find related albums based off of <a href="https://pitchfork.com/" target="_blank">Pitchfork Reviews</a></h4>
+          <h4>Refresh the page to get different albums</h4>
+          <a href="https://docs.google.com/presentation/d/1g_KqfKnCHtBjGWG8KDYbPvRG4yrbwVHNejiChsZ6qBw/edit?usp=sharing" target="_blank">Check out the Data Science behind the scenes</a>
+          <form action='/search' style="margin-top: 20px;">
+            <label for="q">Artist search:</label>
+            <input type="text" name="q"></input>
+            <input type="submit" value="go">
+          </form>
+        </div>
+        <div class="flex-container">
+          {% for review in next_reviews %}
+              <div>
+                  <a href="/review?reviewid={{ review['reviewid'] }}"><img src="{{ review['image'] }}"></a>
+                  <br>
+                  <span>Artist: {{ review['artist'] }}</span>
+                  <br>
+                  <span>Album: {{ review['album'] }}</span>
+              </div>
+          {% endfor %}
+        </div>
+    </body>
+</html>

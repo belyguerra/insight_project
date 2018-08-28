@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TucaTunes</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/webapp.css') }}">
+    </head>
+    <body>
+        <h2>These albums are similar based on the text in their Pitchfork reviews</h2>
+        <h3>When you are ready, scroll down to start over with more albums</h3>
+        <div class="flex-container">
+            {% for review in reviews %}
+                <div>
+                    <iframe src="https://open.spotify.com/embed?uri={{ review['spotify_uri'] }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <br>
+                    <span>Artist: {{ review['artist'] }}</span>
+                    <br>
+                    <span>Album: {{ review['album'] }}</span>
+                    <br>
+                    <p>
+                        {% autoescape false %}
+                            {{ review['intro'] }}
+                        {% endautoescape %}
+                    </p>
+
+                    <a href="{{ review['url'] }}" target="_blank">Read more on Pitchfork...</a>
+                    <br>
+                    <br>
+                    {% if review['is_sim'] %}
+                        <span>Similarity Score: {{ review['sim'] }}%</span>
+                        <br>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+        </div>
+
+        <div>
+          <h1>Keep Exploring ヾ(⌐■_■)ノ♪</h1>
+          <h4>Click an album cover to find related albums based off of <a href="https://pitchfork.com/" target="_blank">Pitchfork Reviews</a></h4>
+          <h4>Refresh the page to get different albums</h4>
+          <a href="https://docs.google.com/presentation/d/1g_KqfKnCHtBjGWG8KDYbPvRG4yrbwVHNejiChsZ6qBw/edit?usp=sharing" target="_blank">Check out the Data Science behind the scenes</a>
+          <form action='/search' style="margin-top: 20px;">
+            <label for="q">Artist search:</label>
+            <input type="text" name="q"></input>
+            <input type="submit" value="go">
+          </form>
+        </div>
+        <div class="flex-container">
+          {% for review in next_reviews %}
+              <div>
+                  <a href="/review?reviewid={{ review['reviewid'] }}"><img src="{{ review['image'] }}"></a>
+                  <br>
+                  <span>Artist: {{ review['artist'] }}</span>
+                  <br>
+                  <span>Album: {{ review['album'] }}</span>
+              </div>
+          {% endfor %}
+        </div>
+    </body>
+</html>

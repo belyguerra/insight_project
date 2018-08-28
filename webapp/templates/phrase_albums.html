@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TEST REVIEWS</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/input_boxes.css') }}">
+    </head>
+    <body>
+      <div>
+    <h2>Most similar to {{ phrase_input }}</h2>
+  </div>
+
+    <!-- <div> -->
+
+      <!-- <iframe src="https://open.spotify.com/embed?uri=spotify:track:0mHyWYXmmCB9iQyK18m3FQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+    <!-- </div> -->
+    <div class="flex-container">
+      <div>
+      <iframe src="https://open.spotify.com/embed/album/3alZBOvPaK3hgMEEymw4Yr" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <h4>Key Phrases</h4>
+      <h4>Key Phrases</h4>
+      <h4>Key Phrases</h4>
+      <h4>Read <a href="https://pitchfork.com/" target="_blank">full review</a></h4>
+      </div>
+
+      <div>
+      <iframe src="https://open.spotify.com/embed/album/3alZBOvPaK3hgMEEymw4Yr" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <h4>Key Phrases</h4>
+      <h4>Key Phrases</h4>
+      <h4>Key Phrases</h4>
+      <h4>Read <a href="https://pitchfork.com/" target="_blank">full review</a></h4>
+      </div>
+
+      <div style="height:200px;">
+        <h4>Based on the reviews,</h4>
+          <h4>the similarity of these albums is:</h4>
+        <h1># %</h1>
+      </div>
+
+    </div>
+
+
+    <h3>Pick another album to keep exploring</h3>
+    <div class="flex-container">
+      {% for box in boxes %}
+      <div><button onclick="window.location.href='/phrase?phrase_input={{ box['name'] }}'">{{ box['name'] }}</button></div>
+      {% endfor %}
+    </div>
+    </body>
+</html>
